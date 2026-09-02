@@ -2,7 +2,6 @@ import { Head } from '@inertiajs/react';
 import { ArrowUpRight, FileCheck2, Files, Upload } from 'lucide-react';
 import { useState } from 'react';
 import { DocumentList } from '@/components/dashboard/document-list';
-import { EmptyState } from '@/components/dashboard/empty-state';
 import { StatCard } from '@/components/dashboard/stat-card';
 import { UploadDialog } from '@/components/dashboard/upload-dialog';
 import { Button } from '@/components/ui/button';
