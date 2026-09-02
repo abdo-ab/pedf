@@ -10,44 +10,19 @@
 
 A modern, full-stack PDF editing application built with Laravel 13, React 19, and Inertia.js 3. PEDF allows users to edit text-based PDF documents while preserving the original design and layout.
 
-## ✨ Features
+##  Features
 
-- 🔐 **Complete Authentication System** - Login, registration, email verification, password reset, and 2FA
-- 📄 **PDF Upload & Validation** - Smart detection of text-based vs scanned PDFs
-- 🎨 **Visual PDF Editor** - Edit text, add images, signatures, and annotations
-- 💾 **Non-Destructive Editing** - Preserve original PDF design and formatting
-- 📊 **User Dashboard** - Manage documents, view usage, and track edits
-- 🎯 **Real-time Rendering** - PDF.js-powered document rendering
-- 🔒 **Secure Storage** - Private document storage with UUID-based access
-- 🎨 **Modern UI/UX** - Built with Tailwind CSS 4 and shadcn/ui components
-- 📱 **Responsive Design** - Mobile-first approach with dark mode support
-- ⚡ **High Performance** - Optimized builds with Vite and Rolldown
+-  **Complete Authentication System** - Login, registration, email verification, password reset, and 2FA
+-  **PDF Upload & Validation** - Smart detection of text-based vs scanned PDFs
+-  **Visual PDF Editor** - Edit text, add images, signatures, and annotations
+-  **Non-Destructive Editing** - Preserve original PDF design and formatting
+-  **User Dashboard** - Manage documents, view usage, and track edits
+-  **Real-time Rendering** - PDF.js-powered document rendering
+-  **Secure Storage** - Private document storage with UUID-based access
+-  **Modern UI/UX** - Built with Tailwind CSS 4 and shadcn/ui components
+-  **Responsive Design** - Mobile-first approach with dark mode support
+-  **High Performance** - Optimized builds with Vite and Rolldown
 
-## 🛠️ Tech Stack
-
-### Backend
-- **Laravel 13** - PHP framework
-- **Laravel Fortify** - Authentication backend
-- **Laravel Wayfinder** - TypeScript route generation
-- **Pest PHP** - Testing framework
-- **PHPStan** - Static analysis
-- **Laravel Pint** - Code formatting
-
-### Frontend
-- **React 19** - UI library with React Compiler
-- **Inertia.js 3** - Modern monolith architecture
-- **TypeScript** - Type-safe JavaScript
-- **Tailwind CSS 4** - Utility-first CSS framework
-- **shadcn/ui** - Component library (Radix UI)
-- **Lucide React** - Icon library
-- **PDF.js** - PDF rendering engine
-- **pdf-lib** - PDF manipulation
-
-### Development Tools
-- **Vite 8** - Build tool
-- **ESLint** - JavaScript linting
-- **Prettier** - Code formatting
-- **Laravel Boost** - Development productivity tools
 
 ## 📋 Requirements
 
@@ -173,189 +148,6 @@ php artisan test --testsuite=Unit
 php artisan test tests/Feature/DocumentUploadTest.php
 ```
 
-### Code Quality Checks
-
-```bash
-# Run all CI checks
-composer run ci:check
-
-# Individual checks
-npm run lint:check      # ESLint
-npm run format:check    # Prettier
-npm run types:check     # TypeScript
-composer run lint:check # PHP Pint
-composer run types:check # PHPStan
-```
-
-### Fix Code Style Issues
-
-```bash
-# Fix JavaScript/TypeScript
-npm run lint
-npm run format
-
-# Fix PHP
-composer run lint
-```
-
-## 📁 Project Structure
-
-```
-pedf/
-├── app/
-│   ├── Http/
-│   │   ├── Controllers/          # HTTP controllers
-│   │   ├── Requests/             # Form requests
-│   │   └── Resources/            # API resources
-│   ├── Models/                   # Eloquent models
-│   └── Services/                 # Business logic services
-├── database/
-│   ├── factories/                # Model factories
-│   ├── migrations/               # Database migrations
-│   └── seeders/                  # Database seeders
-├── resources/
-│   ├── css/                      # Global styles
-│   ├── js/
-│   │   ├── actions/              # Wayfinder actions (generated)
-│   │   ├── components/           # React components
-│   │   ├── hooks/                # React hooks
-│   │   ├── layouts/              # Page layouts
-│   │   ├── lib/                  # Utility libraries
-│   │   ├── pages/                # Inertia pages
-│   │   ├── routes/               # Wayfinder routes (generated)
-│   │   └── types/                # TypeScript types
-│   └── views/                    # Blade templates
-├── routes/
-│   ├── api.php                   # API routes
-│   ├── web.php                   # Web routes
-│   └── settings.php              # Settings routes
-└── tests/
-    ├── Feature/                  # Feature tests
-    └── Unit/                     # Unit tests
-```
-
-## 🔧 Configuration
-
-### Fortify Configuration
-
-Authentication features are configured in `config/fortify.php`:
-
-- Email verification
-- Password reset
-- Two-factor authentication
-- Profile management
-
-### SEO Configuration
-
-SEO metadata is managed via `artesaos/seotools` in `config/seotools.php`.
-
-### Inertia Configuration
-
-Client-side routing settings in `config/inertia.php`.
-
-## 🎨 Customization
-
-### Adding New Routes
-
-1. Define routes in `routes/web.php` or `routes/api.php`
-2. Generate TypeScript helpers:
-   ```bash
-   php artisan wayfinder:generate
-   ```
-3. Use in React components:
-   ```tsx
-   import { dashboard } from '@/routes';
-   
-   <Link href={dashboard.url()}>Dashboard</Link>
-   ```
-
-### Creating Components
-
-Components follow the shadcn/ui pattern:
-
-```tsx
-// resources/js/components/ui/my-component.tsx
-export function MyComponent() {
-  return <div>Hello World</div>;
-}
-```
-
-### Styling
-
-The project uses Tailwind CSS 4:
-
-```tsx
-<div className="flex items-center gap-4 rounded-xl bg-muted p-4">
-  <span className="text-sm font-semibold">Styled component</span>
-</div>
-```
-
-## 📝 Development Workflow
-
-### Conventional Commits
-
-This project follows conventional commit standards:
-
-```
-feat: add PDF export functionality
-fix: resolve upload validation error
-chore: update dependencies
-docs: improve README installation steps
-style: format code with Prettier
-refactor: extract PDF processing to service
-test: add document editor tests
-ci: update GitHub Actions workflow
-```
-
-### Branch Strategy
-
-- `main` - Production-ready code
-- `develop` - Development branch
-- `feature/*` - New features
-- `fix/*` - Bug fixes
-
-### Pull Request Process
-
-1. Create a feature branch
-2. Make your changes
-3. Run tests and linting
-4. Push and create PR
-5. Wait for CI checks
-6. Request review
-
-## 🚢 Deployment
-
-### Production Build
-
-```bash
-# Build for production
-npm run build
-
-# Optimize autoloader
-composer install --optimize-autoloader --no-dev
-
-# Cache configuration
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-```
-
-### Environment Variables
-
-Ensure these are set in production:
-
-```env
-APP_ENV=production
-APP_DEBUG=false
-APP_URL=https://yourdomain.com
-
-# Generate a secure key
-APP_KEY=base64:...
-```
-
-### Laravel Cloud
-
-This application can be deployed using [Laravel Cloud](https://cloud.laravel.com/) for optimal performance and scalability.
 
 ## 🤝 Contributing
 
@@ -367,27 +159,10 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-### Coding Standards
-
-- Follow PSR-12 for PHP
-- Use TypeScript for all new JavaScript code
-- Write tests for new features
-- Maintain test coverage above 80%
-- Document complex logic
-
 ## 📄 License
 
 This project is open-sourced software licensed under the [MIT license](LICENSE).
 
-## 🙏 Acknowledgments
-
-- [Laravel](https://laravel.com) - The PHP framework
-- [React](https://reactjs.org) - The UI library
-- [Inertia.js](https://inertiajs.com) - The modern monolith
-- [Tailwind CSS](https://tailwindcss.com) - The CSS framework
-- [shadcn/ui](https://ui.shadcn.com) - Component library
-- [PDF.js](https://mozilla.github.io/pdf.js/) - PDF rendering
-- [Lucide](https://lucide.dev) - Icon library
 
 ## 📧 Contact
 
@@ -397,4 +172,3 @@ This project is open-sourced software licensed under the [MIT license](LICENSE).
 
 ---
 
-<p align="center">Made with ❤️ using Laravel, React, and Inertia.js</p>
