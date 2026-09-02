@@ -5,10 +5,12 @@ export function EmptyState({
     title,
     description,
     action = false,
+    onUpload,
 }: {
     title: string;
     description: string;
     action?: boolean;
+    onUpload?: () => void;
 }) {
     return (
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-muted/20 px-6 py-12 text-center">
@@ -19,10 +21,16 @@ export function EmptyState({
             <p className="mt-2 max-w-sm text-sm leading-6 text-muted-foreground">
                 {description}
             </p>
-            {action && (
-                <Button className="mt-5" disabled>
-                    <Upload /> Upload PDF{' '}
-                    <span className="text-xs opacity-60">Coming soon</span>
+            {(action || onUpload) && (
+                <Button
+                    className="mt-5"
+                    onClick={onUpload}
+                    disabled={!onUpload}
+                >
+                    <Upload /> Upload PDF
+                    {!onUpload && (
+                        <span className="text-xs opacity-60">Coming soon</span>
+                    )}
                 </Button>
             )}
         </div>
