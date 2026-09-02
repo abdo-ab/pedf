@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Database\Factories\DocumentFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,9 +19,18 @@ class Document extends Model
         'status' => 'uploaded',
     ];
 
+    /**
+     * Get the route key for the model.
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'public_id';
+    }
+
     protected function casts(): array
     {
         return [
+            'public_id' => 'string',
             'file_size' => 'integer',
             'page_count' => 'integer',
             'is_editable' => 'boolean',
