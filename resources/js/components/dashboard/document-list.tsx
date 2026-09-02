@@ -1,8 +1,10 @@
+import { Link } from '@inertiajs/react';
 import { FileText } from 'lucide-react';
 import { EmptyState } from '@/components/dashboard/empty-state';
+import { edit } from '@/routes/documents';
 
 type Document = {
-    id: number;
+    public_id: string;
     original_filename: string;
     file_size: number;
     page_count: number | null;
@@ -10,22 +12,30 @@ type Document = {
     created_at: string | null;
 };
 
-export function DocumentList({ documents }: { documents: Document[] }) {
-    if (documents.length === 0)
+export function DocumentList({
+    documents,
+    onUpload,
+}: {
+    documents: Document[];
+    onUpload?: () => void;
+}) {
+    if (documents.length === 0) {
         return (
             <EmptyState
                 title="Your workspace is clear"
                 description="Upload a supported text-based PDF to see recent work here."
-                action
+                onUpload={onUpload}
             />
         );
+    }
 
     return (
         <div className="divide-y divide-border">
             {documents.map((document) => (
-                <div
-                    key={document.id}
-                    className="flex items-center gap-4 py-4 first:pt-0 last:pb-0"
+                <Link
+                    key={document.public_id}
+                    href={edit.url(document.public_id)}
+                    className="flex items-start gap-3 py-4 first:pt-0 last:pb-0 sm:items-center sm:gap-4"
                 >
                     <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-[#eef6ce] text-[#667b15]">
                         <FileText className="size-5" />
@@ -39,10 +49,10 @@ export function DocumentList({ documents }: { documents: Document[] }) {
                             {Math.round(document.file_size / 1024)} KB
                         </p>
                     </div>
-                    <span className="rounded-full bg-muted px-2.5 py-1 text-[10px] font-bold tracking-wide text-muted-foreground uppercase">
+                    <span className="shrink-0 rounded-full bg-muted px-2.5 py-1 text-[10px] font-bold tracking-wide text-muted-foreground uppercase">
                         {document.status}
                     </span>
-                </div>
+                </Link>
             ))}
         </div>
     );

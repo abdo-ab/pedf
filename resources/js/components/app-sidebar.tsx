@@ -1,13 +1,5 @@
-import { Link } from '@inertiajs/react';
-import {
-    Activity,
-    BookOpen,
-    CreditCard,
-    FileText,
-    FolderGit2,
-    LayoutGrid,
-} from 'lucide-react';
-import AppLogo from '@/components/app-logo';
+import { Link, usePage } from '@inertiajs/react';
+import { Activity, CreditCard, LayoutGrid } from 'lucide-react';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
@@ -30,36 +22,22 @@ const mainNavItems: NavItem[] = [
         icon: LayoutGrid,
     },
     {
-        title: 'Documents',
-        href: `${dashboard()}#documents`,
-        icon: FileText,
-    },
-    {
         title: 'Subscription',
-        href: `${dashboard()}#subscription`,
+        href: '/subscription',
         icon: CreditCard,
     },
     {
         title: 'Usage',
-        href: `${dashboard()}#usage`,
+        href: '/usage',
         icon: Activity,
     },
 ];
 
-const footerNavItems: NavItem[] = [
-    {
-        title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
-        icon: FolderGit2,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#react',
-        icon: BookOpen,
-    },
-];
+const footerNavItems: NavItem[] = [];
 
 export function AppSidebar() {
+    const { name } = usePage().props as { name: string };
+
     return (
         <Sidebar collapsible="icon" variant="inset">
             <SidebarHeader>
@@ -67,7 +45,16 @@ export function AppSidebar() {
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
                             <Link href={dashboard()} prefetch>
-                                <AppLogo />
+                                <div className="flex size-8 shrink-0 items-center justify-center rounded-md bg-[#17221e]">
+                                    <img
+                                        src="/favicon.svg"
+                                        className="size-5"
+                                        alt={name}
+                                    />
+                                </div>
+                                <span className="truncate font-semibold">
+                                    {name}
+                                </span>
                             </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
